@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-6">
+            <form method='POST' action='/api/submissions'>
+                <div class="mb-3">
+                    <label for="student_name" class="form-label">Имя студента</label>
+                    <input type="text" class="form-control" name="student_name" id="student_name" placeholder="Пупа Лупович">
+                </div>
+                <div class="mb-3">
+                    <label for="service_url" class="form-label">Ссылка на предиктор</label>
+                    <input type="text" class="form-control" name="service_url" id="service_url" placeholder="http://133d198e-aaa7-4fc9-a206-3d25af84b44e.westus.azurecontainer.io/score">
+                </div>
+                <button type="submit" class="btn btn-primary">Проверить!</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

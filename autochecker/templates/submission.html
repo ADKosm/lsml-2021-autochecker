@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row mt-3 justify-content-center">
+            <div class="card col-6" style="width: 18rem;">
+                <img src="{{gif_url}}" class="card-img-top" style="max-height: 500px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{submission.student_name}}</h5>
+                    <!--        <p class="card-text">Submit id: <b>{{submission.submit_id}}</b></p>-->
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Submit id: <b>{{submission.submit_id}}</b></li>
+                    <li class="list-group-item">Service url: <b>{{submission.service_url}}</b></li>
+                    <li class="list-group-item">Accuracy: <b>{{submission.accuracy}}</b></li>
+
+                </ul>
+                <div class="card-body">
+                    Errors:
+                    {% for error in errors %}
+                        <br>
+                        <samp>{{error}}</samp>
+                    {% endfor %}
+                </div>
+            </div>
+
+    </div>
+</div>
+
+{% endblock %}

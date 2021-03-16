@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  autochecker:
+    build:
+      context: autochecker
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8000
+
