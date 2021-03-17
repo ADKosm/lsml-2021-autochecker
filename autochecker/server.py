@@ -14,25 +14,29 @@ scorer = MnistHTTPScorer()
 
 def build_gif_url(submission: StudentSubmission):
     if submission.accuracy > 0.5:
-        tag = 'success'
+        tag = "success"
     else:
-        tag = 'failure'
+        tag = "failure"
 
-    giphy_url = str(furl('https://api.giphy.com/v1/gifs/random').add({
-        'api_key': 'uUOjWvgGc05rGBzVMxn1H9Eh2CptENBT',
-        'tag': tag,
-        'rating': 'pg-13'
-    }))
+    giphy_url = str(
+        furl("https://api.giphy.com/v1/gifs/random").add(
+            {
+                "api_key": "uUOjWvgGc05rGBzVMxn1H9Eh2CptENBT",
+                "tag": tag,
+                "rating": "pg-13",
+            }
+        )
+    )
     r = requests.get(giphy_url)
-    return r.json()['data']['image_original_url']
+    return r.json()["data"]["image_original_url"]
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/api/submissions', methods=["POST"])
+@app.route("/api/submissions", methods=["POST"])
 def new_submission():
     student_name = request.form["student_name"].strip()
     service_url = request.form["service_url"].strip()
@@ -42,13 +46,15 @@ def new_submission():
         submit_id=StudentSubmission.gen_id(),
         student_name=student_name,
         service_url=service_url,
-        accuracy=accuracy
+        accuracy=accuracy,
     )
 
     gsgateway.add_new_submission(student_submission)
 
     gif_url = build_gif_url(student_submission)
-    return render_template('submission.html', submission=student_submission, errors=errors, gif_url=gif_url)
+    return render_template(
+        "submission.html", submission=student_submission, errors=errors, gif_url=gif_url
+    )
 
 
 if __name__ == "__main__":

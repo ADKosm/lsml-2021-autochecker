@@ -16,8 +16,13 @@ class GoogleSheetGateway:
 
         creds_name = "azureml-autochecker-8825d6ffcb15.json"
         with path(gdrive, creds_name) as google_credentials_path:
-            scopes = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-            credentials = ServiceAccountCredentials.from_json_keyfile_name(google_credentials_path, scopes)
+            scopes = [
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/drive",
+            ]
+            credentials = ServiceAccountCredentials.from_json_keyfile_name(
+                google_credentials_path, scopes
+            )
             return credentials
 
     def _google_client(self):
